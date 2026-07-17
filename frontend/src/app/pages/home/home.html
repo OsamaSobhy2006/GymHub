@@ -1,0 +1,448 @@
+<section class="hero">
+
+  <div class="overlay"></div>
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <span class="subtitle">
+        NO PAIN • NO GAIN
+      </span>
+
+      <h1 class="title">
+        FITNESS
+        <br>
+        CLUB<span>.</span>
+      </h1>
+
+      <p class="description">
+        Transform your body and build your strength with professional
+        trainers, modern equipment, and flexible membership plans
+        designed for everyone.
+      </p>
+
+      <div class="buttons">
+
+        <a routerLink="/register" class="join-btn">
+          Join Now
+        </a>
+
+        <a routerLink="/plans" class="plans-btn">
+          View Plans
+        </a>
+
+      </div>
+      <img
+        src="/hero.png"
+        alt="Gym Hero"
+        class="mobile-image"
+    />
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="why-us">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-subtitle">
+                WHY CHOOSE US
+            </span>
+
+            <h2 class="section-title">
+                Build Your Best
+                <span>Version</span>
+            </h2>
+
+            <p class="section-description">
+                Everything you need to achieve your fitness goals in one place.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-person-workspace"></i>
+
+                    <h4>Professional Trainers</h4>
+
+                    <p>
+                        Train with certified coaches who help you reach your goals faster.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="fa-solid fa-dumbbell"></i>
+
+                    <h4>Modern Equipment</h4>
+
+                    <p>
+                        Premium machines and free weights for every workout style.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    <h4>Flexible Memberships</h4>
+
+                    <p>
+                        Choose the membership plan that fits your lifestyle and budget.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-heart-pulse"></i>
+
+                    <h4>Personal Training</h4>
+
+                    <p>
+                        Personalized workout programs tailored specifically for you.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-egg-fried"></i>
+
+                    <h4>Nutrition Support</h4>
+
+                    <p>
+                        Get expert nutrition advice to maximize your fitness results.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-clock-history"></i>
+
+                    <h4>Open 7 Days</h4>
+
+                    <p>
+                        Train anytime with flexible opening hours throughout the week.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="plans">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">
+                MEMBERSHIP PLANS
+            </span>
+            <h2 class="section-title">
+                Choose Your
+                <span>Membership</span>
+            </h2>
+            <p class="section-description">
+                Find the perfect membership plan that fits your fitness journey.
+            </p>
+        </div>
+        <div class="row g-4">
+            @for(plan of plans(); track plan.id){
+                <div class="col-lg-4 col-md-6">
+                    <div class="plan-card">
+                        <h3>{{plan.name}}</h3>
+                        <div class="price">
+                            {{plan.price}}
+                            <span>EGP</span>
+                        </div>
+                        <div class="duration">
+                            {{plan.durationInDays}} Days
+                        </div>
+                        <p>
+                            {{plan.description}}
+                        </p>
+                        <a
+                            routerLink="/plans"
+                            class="join-plan-btn"
+                        >
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-5">
+            <a
+                routerLink="/plans"
+                class="view-plans-btn"
+            >
+                View All Plans
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="trainers">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">
+                OUR TRAINERS
+            </span>
+            <h2 class="section-title">
+                Meet Our
+                <span>Professional Trainers</span>
+            </h2>
+            <p class="section-description">
+                Our certified trainers are dedicated to helping you reach your fitness goals with personalized guidance and motivation.
+            </p>
+        </div>
+        <div class="row g-4">
+            @for(trainer of trainers(); track trainer.id){
+                <div class="col-lg-4 col-md-6">
+                    <div class="trainer-card">
+
+                        <img
+                            [src]="environment.apiUrl + trainer.profileImage"
+                            [alt]="trainer.fullname"
+                        >
+                        <h4>
+                            {{trainer.fullname}}
+                        </h4>
+                        <span>
+                            Professional Trainer
+                        </span>
+                        <app-rating
+                            [rating]="trainer.averageRating"
+                            [totalReviews]="trainer.totalReviews"
+                            [showText]="false"
+                            >
+                        </app-rating>
+                        <a
+                            [routerLink]="['/trainers', trainer.id]"
+                            class="trainer-btn"
+                        >
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-5">
+            <a
+                routerLink="/trainers"
+                class="view-trainers-btn"
+            >
+                View All Trainers
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="cta-content">
+
+            <span class="cta-subtitle">
+                START TODAY
+            </span>
+
+            <h2 class="cta-title">
+                READY TO BUILD
+                <br>
+                YOUR <span>DREAM BODY?</span>
+            </h2>
+
+            <p class="cta-description">
+                Join hundreds of members training with professional coaches,
+                premium equipment, and flexible membership plans designed to
+                help you achieve your fitness goals.
+            </p>
+
+            @if(!authservice.currentUser()){
+                <a
+                    routerLink="/register"
+                    class="cta-btn"
+                >
+                    Join GymHub
+                </a>
+            } @else {
+                <a
+                    routerLink="/plans"
+                    class="cta-btn"
+                >
+                    View Membership Plans
+                </a>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+            <div class="col-lg-4">
+
+                <h3 class="footer-logo">
+                    GymHub
+                </h3>
+
+                <p class="footer-text">
+                    Build your strongest self with professional trainers,
+                    modern equipment, and flexible membership plans.
+                    Your fitness journey starts here.
+                </p>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <h5 class="footer-title">
+                    Quick Links
+                </h5>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a routerLink="/">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/trainers">
+                            Trainers
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/plans">
+                            Membership Plans
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5 class="footer-title">
+                    Contact
+                </h5>
+
+                <ul class="footer-links">
+
+                    <li>
+                        info@gymhub.com
+                    </li>
+
+                    <li>
+                        +20 100 123 4567
+                    </li>
+
+                    <li>
+                        cairo, Egypt
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5 class="footer-title">
+                    Working Hours
+                </h5>
+
+                <ul class="footer-links">
+
+                    <li>
+                        Monday - Friday
+                    </li>
+
+                    <li>
+                        6:00 AM - 11:00 PM
+                    </li>
+
+                    <li>
+                        Saturday - Sunday
+                    </li>
+
+                    <li>
+                        8:00 AM - 10:00 PM
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 GymHub. All Rights Reserved.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+

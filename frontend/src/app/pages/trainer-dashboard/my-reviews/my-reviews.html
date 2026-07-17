@@ -1,0 +1,218 @@
+<section class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h2>My Reviews</h2>
+            <p>See what your members think about your training.</p>
+        </div>
+
+        <div class="search-box">
+            <i class="bi bi-search"></i>
+
+            <input
+                type="text"
+                placeholder="Search by member or comment..."
+                [ngModel]="search()"
+                (ngModelChange)="search.set($event)">
+        </div>
+
+    </div>
+
+    @if(isLoading()){
+
+        <div class="loading-state">
+
+            <div class="spinner"></div>
+
+            <p>Loading reviews...</p>
+
+        </div>
+
+    }@else{
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="icon total-icon">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{totalReviews()}}</h3>
+                    <span>Total Reviews</span>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="icon average-icon">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{averageRating()}}</h3>
+                    <span>Average Rating</span>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="icon five-stars-icon">
+                    <i class="bi bi-award-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{fiveStars()}}</h3>
+                    <span>5 Star Reviews</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Member</th>
+
+                        <th>Rating</th>
+
+                        <th>Comment</th>
+
+                        <th>Date</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if(filteredReviews().length){
+
+                        @for(review of filteredReviews(); track review.id){
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <img
+                                            [src]="getMemberImage(review.member)"
+                                            [alt]="review.member.fullname">
+
+                                        <div>
+
+                                            <h5>{{review.member.fullname}}</h5>
+
+                                            <span>{{review.member.email}}</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="review-stars">
+
+                                        @for(star of [1,2,3,4,5]; track star){
+
+                                            <i
+                                                class="bi"
+                                                [class.bi-star-fill]="star <= review.rating"
+                                                [class.bi-star]="star > review.rating">
+                                            </i>
+
+                                        }
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="comment">
+
+                                        {{review.comment}}
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    {{review.createdAt | date:'dd MMM yyyy'}}
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="view-btn"
+                                        (click)="openDetails(review)">
+
+                                        <i class="bi bi-eye-fill"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    }@else{
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="empty">
+
+                                <div class="empty-state">
+
+                                    <i class="bi bi-chat-square-text"></i>
+
+                                    <h5>No Reviews Found</h5>
+
+                                    <p>No reviews match your search.</p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    }
+
+    @if(isDetailsOpen() && selectedReview()){
+
+        <app-my-reviews-details
+            [review]="selectedReview()!"
+            (close)="closeDetails()">
+        </app-my-reviews-details>
+
+    }
+
+</section>

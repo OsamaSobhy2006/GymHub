@@ -1,0 +1,196 @@
+<section class="membership-page">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>My Membership</h2>
+            <p>
+                View your current membership and membership history.
+            </p>
+        </div>
+
+        @if (isLoading()) {
+
+            <h4 class="text-center text-white mt-5">
+                Loading Membership...
+            </h4>
+
+        } @else {
+
+            @if (currentMembership(); as membership) {
+
+                <div class="membership-card">
+
+                    <div class="membership-header">
+
+                        <div>
+                            <h3>
+                                <i class="bi bi-award-fill me-2"></i>
+                                Current Membership
+                            </h3>
+
+                            <h4>
+                                {{ membership.membershipPlan.name }}
+                            </h4>
+                        </div>
+
+                        <span
+                            class="badge"
+                            [class.bg-danger]="isExpired(membership.endDate)"
+                            [class.bg-success]="!isExpired(membership.endDate)">
+
+                            {{ isExpired(membership.endDate) ? 'EXPIRED' : membership.status }}
+
+                        </span>
+
+                    </div>
+
+                    <div class="row mt-4">
+
+                        <div class="col-md-4 info-item">
+
+                            <span>Start Date</span>
+
+                            <strong>
+                                {{ membership.startDate | date:'mediumDate' }}
+                            </strong>
+
+                        </div>
+
+                        <div class="col-md-4 info-item">
+
+                            <span>End Date</span>
+
+                            <strong>
+                                {{ membership.endDate | date:'mediumDate' }}
+                            </strong>
+
+                        </div>
+
+                        <div class="col-md-4 info-item">
+
+                            <span>Remaining Days</span>
+
+                            <strong>
+
+                                {{ remainingDays(membership.endDate) }}
+
+                                Days
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            } @else {
+
+                <div class="membership-card empty-card">
+
+                    <i class="bi bi-exclamation-circle-fill"></i>
+
+                    <h3>No Active Membership</h3>
+
+                    <p>
+                        You don't have any active membership.
+                    </p>
+
+                </div>
+
+            }
+
+            <div class="history-card">
+
+                <h3>
+
+                    <i class="bi bi-clock-history me-2"></i>
+
+                    Membership History
+
+                </h3>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle table-hover">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Plan</th>
+
+                                <th>Start Date</th>
+
+                                <th>End Date</th>
+
+                                <th>Duration</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @for (membership of memberships(); track membership.id) {
+
+                                <tr>
+
+                                    <td>
+
+                                        {{ membership.membershipPlan.name }}
+
+                                    </td>
+
+                                    <td>
+
+                                        {{ membership.startDate | date:'mediumDate' }}
+
+                                    </td>
+
+                                    <td>
+
+                                        {{ membership.endDate | date:'mediumDate' }}
+
+                                    </td>
+
+                                    <td>
+
+                                        {{ membership.membershipPlan.durationInDays }}
+
+                                        Days
+
+                                    </td>
+
+                                    <td>
+                                    <span
+                                        class="badge"
+                                        [class.bg-danger]="isExpired(membership.endDate)"
+                                        [class.bg-success]="!isExpired(membership.endDate)">
+
+                                        {{ isExpired(membership.endDate) ? 'EXPIRED' : membership.status }}
+
+                                    </span>
+
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+
+</section>

@@ -1,0 +1,283 @@
+.dashboard{
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    background:#0f172a;
+    min-height:100vh;
+}
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.dashboard-header h2{
+    margin:0;
+    color:#fff;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.dashboard-header p{
+    margin-top:8px;
+    color:#94a3b8;
+}
+
+.search-box{
+    position:relative;
+    width:380px;
+}
+
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#64748b;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 18px 15px 48px;
+    border:none;
+    border-radius:14px;
+    background:#1e293b;
+    color:#fff;
+    outline:none;
+    border:1px solid #334155;
+    transition:.3s;
+}
+
+.search-box input:focus{
+    border-color:#3b82f6;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:22px;
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+}
+
+.icon{
+    width:65px;
+    height:65px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:1.7rem;
+}
+
+.total{
+    background:#2563eb;
+}
+
+.sessions{
+    background:#8b5cf6;
+}
+
+.completed{
+    background:#22c55e;
+}
+
+.upcoming{
+    background:#f59e0b;
+}
+
+.info h3{
+    margin:0;
+    color:#fff;
+    font-size:1.8rem;
+    font-weight:700;
+}
+
+.info span{
+    color:#94a3b8;
+}
+
+.table-wrapper{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#273449;
+}
+
+th{
+    padding:20px;
+    color:#fff;
+    text-align:left;
+    font-weight:600;
+}
+
+td{
+    padding:20px;
+    color:#fff;
+    border-top:1px solid #334155;
+    vertical-align:middle;
+}
+
+tbody tr{
+    transition:.3s;
+}
+
+tbody tr:hover{
+    background:#273449;
+}
+
+.member-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.member-info img{
+    width:55px;
+    height:55px;
+    min-width:55px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #334155;
+    background:#111827;
+}
+
+.member-info h5{
+    margin:0;
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+}
+
+.member-info span{
+    display:block;
+    margin-top:4px;
+    color:#94a3b8;
+    font-size:.85rem;
+}
+
+.badge{
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.active{
+    background:rgba(34,197,94,.15);
+    color:#22c55e;
+}
+
+.inactive{
+    background:rgba(239,68,68,.15);
+    color:#ef4444;
+}
+
+.view-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.view-btn:hover{
+    background:#1d4ed8;
+}
+
+.loading-state{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    min-height:400px;
+}
+
+.spinner{
+    width:48px;
+    height:48px;
+    border:4px solid #334155;
+    border-top-color:#ef4444;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+.empty{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.empty-state i{
+    font-size:3rem;
+    color:#64748b;
+}
+
+.empty-state h5{
+    margin:18px 0 10px;
+    color:#fff;
+}
+
+.empty-state p{
+    color:#94a3b8;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@media(max-width:992px){
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .search-box{
+        width:100%;
+    }
+}
+
+@media(max-width:768px){
+    .dashboard{
+        padding:20px;
+    }
+
+    .table-wrapper{
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:900px;
+    }
+}

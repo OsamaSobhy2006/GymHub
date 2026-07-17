@@ -1,0 +1,63 @@
+<div class="modal-backdrop">
+    <div class="payment-modal">
+        <div class="modal-header">
+            <h3>Payment Details</h3>
+            <button class="close-btn" (click)="closeModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="details">
+            <div class="detail-item">
+                <span>Member</span>
+                <strong>{{payment.member.fullname}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Email</span>
+                <strong>{{payment.member.email}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Membership Plan</span>
+                <strong>{{payment.membership?.membershipPlan?.name || '-'}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Amount</span>
+                <strong class="amount">{{payment.amount}} EGP</strong>
+            </div>
+            <div class="detail-item">
+                <span>Payment Type</span>
+                <span class="badge type">{{payment.type}}</span>
+            </div>
+            <div class="detail-item">
+                <span>Status</span>
+                <span
+                    class="badge"
+                    [class.active]="payment.status==='PAID'"
+                    [class.pending]="payment.status==='PENDING'"
+                    [class.failed]="payment.status==='FAILED'">
+                    {{payment.status}}
+                </span>
+            </div>
+            <div class="detail-item">
+                <span>Paid At</span>
+                <strong>{{payment.paidAt ? (payment.paidAt | date:'dd MMM yyyy, HH:mm') : '-'}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Stripe Session</span>
+                <strong>{{payment.stripeSessionId || '-'}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Payment Intent</span>
+                <strong>{{payment.stripePaymentIntentId || '-'}}</strong>
+            </div>
+            <div class="detail-item">
+                <span>Created At</span>
+                <strong>{{payment.createdAt | date:'dd MMM yyyy, HH:mm'}}</strong>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="close-action-btn" (click)="closeModal()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>

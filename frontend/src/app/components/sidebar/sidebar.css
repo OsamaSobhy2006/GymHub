@@ -1,0 +1,241 @@
+.sidebar{
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    width: 270px;
+
+    height: 100vh;
+
+    background: #111827;
+
+    border-right: 1px solid rgba(255,255,255,.08);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 30px 20px;
+
+}
+
+.logo{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 45px;
+
+}
+
+.logo i{
+
+    color: #dc3545;
+
+    font-size: 2rem;
+
+}
+
+.logo h3{
+
+    color: white;
+
+    margin: 0;
+
+    font-weight: 700;
+
+}
+
+.menu{
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+
+    flex: 1;
+
+}
+
+.menu li{
+
+    margin-bottom: 10px;
+
+}
+
+.menu a{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    transition: .3s;
+
+    font-weight: 500;
+
+}
+
+.menu a i{
+
+    font-size: 1.1rem;
+
+}
+
+.menu a:hover{
+
+    background: rgba(220,53,69,.12);
+
+    color: white;
+
+}
+
+.menu a.active{
+
+    background: #dc3545;
+
+    color: white;
+
+}
+
+.logout{
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+
+}
+
+.logout button{
+
+    width: 100%;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #dc3545;
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+.logout button:hover{
+
+    background: #bb2d3b;
+
+}
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:30px 12px;
+
+    }
+
+    .logo{
+
+        justify-content:center;
+
+    }
+
+    .logo h3{
+
+        display:none;
+
+    }
+
+    .menu a{
+
+        justify-content:center;
+
+        padding:16px;
+
+    }
+
+    .menu a span{
+
+        display:none;
+
+    }
+
+    .menu a i{
+
+        margin:0;
+
+        font-size:1.25rem;
+
+    }
+
+    .logout button{
+
+        display:flex;
+
+        justify-content:center;
+
+        align-items:center;
+
+        gap:0;
+
+    }
+
+    .logout button i{
+
+        margin:0;
+
+        font-size:1.2rem;
+
+    }
+
+    .logout button{
+
+        font-size:0;
+
+    }
+
+    .logout button i{
+
+        font-size:1.2rem;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:75px;
+
+        padding:25px 10px;
+
+    }
+
+}

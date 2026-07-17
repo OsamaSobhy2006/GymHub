@@ -1,0 +1,213 @@
+<section class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h2>My Members</h2>
+            <p>Manage all members assigned to you.</p>
+        </div>
+
+        <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+                type="text"
+                placeholder="Search by member name or email..."
+                [ngModel]="search()"
+                (ngModelChange)="search.set($event)">
+        </div>
+
+    </div>
+
+    @if(isLoading()){
+
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading members...</p>
+        </div>
+
+    }@else{
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="icon total">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{totalMembers()}}</h3>
+                    <span>Total Members</span>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="icon sessions">
+                    <i class="bi bi-calendar2-week-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{totalSessions()}}</h3>
+                    <span>Total Sessions</span>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="icon completed">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{completedSessions()}}</h3>
+                    <span>Completed Sessions</span>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="icon upcoming">
+                    <i class="bi bi-clock-fill"></i>
+                </div>
+
+                <div class="info">
+                    <h3>{{upcomingSessions()}}</h3>
+                    <span>Upcoming Sessions</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Member</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if(filteredMembers().length){
+
+                        @for(member of filteredMembers();track member.id){
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <img
+                                            [src]="getMemberImage(member)"
+                                            [alt]="member.fullname">
+
+                                        <div>
+
+                                            <h5>{{member.fullname}}</h5>
+
+                                            <span>{{member.id}}</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    {{member.email}}
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="badge"
+                                        [class.active]="member.status==='ACTIVE'"
+                                        [class.inactive]="member.status!=='ACTIVE'">
+
+                                        {{member.status}}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    {{member.createdAt | date:'dd MMM yyyy'}}
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="view-btn"
+                                        (click)="openDetails(member)">
+
+                                        <i class="bi bi-eye-fill"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    }@else{
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="empty">
+
+                                <div class="empty-state">
+
+                                    <i class="bi bi-people"></i>
+
+                                    <h5>No Members Found</h5>
+
+                                    <p>No members match your search.</p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    }
+
+    @if(isDetailsOpen() && selectedMember()){
+
+        <app-my-members-details
+            [member]="selectedMember()!"
+            [sessions]="getMemberSessions(selectedMember()!.id)"
+            (close)="closeDetails()">
+        </app-my-members-details>
+
+    }
+
+</section>

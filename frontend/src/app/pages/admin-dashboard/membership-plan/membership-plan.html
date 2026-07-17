@@ -1,0 +1,155 @@
+<section class="dashboard">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Membership Plans</h1>
+
+            <p>Manage all membership plans.</p>
+
+        </div>
+
+        <button
+            class="add-user-btn"
+            (click)="openCreateForm()">
+
+            <i class="bi bi-plus-circle-fill"></i>
+
+            Add Plan
+
+        </button>
+
+    </div>
+
+    <div class="search-box">
+
+        <i class="bi bi-search"></i>
+
+        <input
+            type="text"
+            placeholder="Search plans..."
+            (input)="onSearch($event)">
+
+    </div>
+
+    @if(isLoading()){
+
+        <div class="loading">
+
+            <div class="spinner-border text-danger"></div>
+
+        </div>
+
+    }
+
+    @else{
+
+        <div class="plans-grid">
+
+            @for(plan of filteredPlans(); track plan.id){
+
+                <div class="plan-card">
+
+                    <div class="plan-header">
+
+                        <h3>{{ plan.name }}</h3>
+
+                        <span
+                            class="status"
+                            [class.active]="plan.isActive"
+                            [class.inactive]="!plan.isActive">
+
+                            {{ plan.isActive ? 'ACTIVE' : 'INACTIVE' }}
+
+                        </span>
+
+                    </div>
+
+                    <h2>
+
+                        {{ plan.price }}
+
+                        <small>EGP</small>
+
+                    </h2>
+
+                    <p class="duration">
+
+                        {{ plan.durationInDays }}
+
+                        Days
+
+                    </p>
+
+                    <p class="description">
+
+                        {{ plan.description }}
+
+                    </p>
+
+                    <div class="actions">
+
+                        <button
+                            class="edit-btn"
+                            (click)="openEditForm(plan)">
+
+                            <i class="bi bi-pencil-fill"></i>
+
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            (click)="deactivatePlan(plan.id)">
+
+                            <i class="bi bi-trash-fill"></i>
+
+                            Deactivate
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            }
+
+            @empty{
+
+                <div class="empty-state">
+
+                    <i class="bi bi-card-checklist"></i>
+
+                    <h3>No Membership Plans</h3>
+
+                    <p>
+
+                        There are no membership plans yet.
+
+                    </p>
+
+                </div>
+
+            }
+
+        </div>
+
+    }
+
+    @if(isFormOpen()){
+
+        <app-membership-plan-form
+
+            [plan]="selectedPlan()"
+
+            (close)="closeForm()"
+
+            (saved)="closeForm()">
+
+        </app-membership-plan-form>
+
+    }
+
+</section>

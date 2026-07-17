@@ -1,0 +1,92 @@
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="bi bi-heart-pulse-fill"></i>
+        <h3>Gym Admin</h3>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a
+                routerLink="/admin/overview"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <i class="bi bi-grid-fill"></i>
+                <span>Overview</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/members"
+                routerLinkActive="active">
+                <i class="bi bi-people-fill"></i>
+                <span>Members</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/trainers"
+                routerLinkActive="active">
+                <i class="bi bi-person-workspace"></i>
+                <span>Trainers</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/membership-plans"
+                routerLinkActive="active">
+                <i class="bi bi-card-checklist"></i>
+                <span>Membership Plans</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/memberships"
+                routerLinkActive="active">
+                <i class="bi bi-person-vcard-fill"></i>
+                <span>Memberships</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/sessions"
+                routerLinkActive="active">
+                <i class="bi bi-calendar2-week-fill"></i>
+                <span>Sessions</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/payments"
+                routerLinkActive="active">
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Payments</span>
+            </a>
+        </li>
+
+        <li>
+            <a
+                routerLink="/admin/reviews"
+                routerLinkActive="active">
+                <i class="bi bi-star-fill"></i>
+                <span>Reviews</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+        <button (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+        </button>
+    </div>
+
+</div>

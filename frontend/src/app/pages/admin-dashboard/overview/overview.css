@@ -1,0 +1,272 @@
+.dashboard{
+
+    padding:40px;
+
+    background:#0f172a;
+
+    min-height:100vh;
+
+}
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-header h1{
+
+    color:#fff;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.dashboard-header p{
+
+    color:#94a3b8;
+
+    margin-top:6px;
+
+    margin-bottom:0;
+
+}
+
+.cards-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+
+    margin-bottom:35px;
+
+}
+
+.dashboard-card{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#ef4444;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+}
+
+.card-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:22px;
+
+}
+
+.card-icon i{
+
+    color:white;
+
+    font-size:1.4rem;
+
+}
+
+.users{
+
+    background:#2563eb;
+
+}
+
+.members{
+
+    background:#22c55e;
+
+}
+
+.trainers{
+
+    background:#8b5cf6;
+
+}
+
+.plans{
+
+    background:#f59e0b;
+
+}
+
+.memberships{
+
+    background:#06b6d4;
+
+}
+
+.sessions{
+
+    background:#ef4444;
+
+}
+
+.payments{
+
+    background:#14b8a6;
+
+}
+
+.reviews{
+
+    background:#ec4899;
+
+}
+
+.dashboard-card h2{
+
+    color:#fff;
+
+    font-size:2.3rem;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.dashboard-card p{
+
+    color:#94a3b8;
+
+    margin:0;
+
+    font-size:.95rem;
+
+}
+
+.overview-card{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+    border-radius:20px;
+
+    padding:30px;
+
+}
+
+.overview-card h3{
+
+    color:white;
+
+    margin-bottom:25px;
+
+    font-size:1.3rem;
+
+    font-weight:600;
+
+}
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+.overview-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 20px;
+
+    background:#0f172a;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.overview-item span{
+
+    color:#94a3b8;
+
+}
+
+.overview-item strong{
+
+    color:white;
+
+    font-size:1.2rem;
+
+}
+
+.loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:400px;
+
+}
+
+@media(max-width:992px){
+
+    .dashboard{
+
+        padding:20px;
+
+    }
+
+    .overview-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+

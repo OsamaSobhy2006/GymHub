@@ -1,0 +1,401 @@
+.dashboard {
+
+    padding: 40px;
+
+    background: #0f172a;
+
+    min-height: 100vh;
+
+}
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+.page-header h1 {
+
+    color: white;
+
+    margin: 0;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+}
+
+.page-header p {
+
+    color: #94a3b8;
+
+    margin-top: 6px;
+
+    margin-bottom: 0;
+
+}
+
+.add-user-btn {
+
+    background: #ef4444;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    font-weight: 600;
+
+}
+
+.add-user-btn:hover {
+
+    background: #dc2626;
+
+    transform: translateY(-2px);
+
+}
+
+.search-box {
+
+    position: relative;
+
+    margin-bottom: 35px;
+
+}
+
+.search-box i {
+
+    position: absolute;
+
+    left: 18px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #94a3b8;
+
+}
+
+.search-box input {
+
+    width: 100%;
+
+    height: 56px;
+
+    border: 1px solid #334155;
+
+    background: #1e293b;
+
+    border-radius: 16px;
+
+    color: white;
+
+    padding-left: 48px;
+
+    outline: none;
+
+    transition: .3s;
+
+}
+
+.search-box input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+.search-box input:focus {
+
+    border-color: #ef4444;
+
+}
+
+.plans-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+
+    gap: 25px;
+
+}
+
+.plan-card {
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    transition: .3s;
+
+}
+
+.plan-card:hover {
+
+    transform: translateY(-6px);
+
+    border-color: #ef4444;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.plan-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+.plan-header h3 {
+
+    color: white;
+
+    margin: 0;
+
+    font-size: 1.4rem;
+
+    font-weight: 700;
+
+}
+
+.plan-card h2 {
+
+    color: white;
+
+    font-size: 2.5rem;
+
+    margin: 10px 0;
+
+    font-weight: 700;
+
+}
+
+.plan-card h2 small {
+
+    font-size: 1rem;
+
+    color: #94a3b8;
+
+}
+
+.duration {
+
+    color: #ef4444;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+}
+
+.description {
+
+    color: #cbd5e1;
+
+    line-height: 1.6;
+
+    min-height: 70px;
+
+    margin-bottom: 25px;
+
+}
+
+.status {
+
+    padding: 7px 15px;
+
+    border-radius: 30px;
+
+    font-size: .8rem;
+
+    font-weight: 600;
+
+}
+
+.status.active {
+
+    background: rgba(34,197,94,.15);
+
+    color: #22c55e;
+
+}
+
+.status.inactive {
+
+    background: rgba(239,68,68,.15);
+
+    color: #ef4444;
+
+}
+
+.actions {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+.actions button {
+
+    flex: 1;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    font-weight: 600;
+
+}
+
+.edit-btn {
+
+    background: rgba(37,99,235,.15);
+
+    color: #3b82f6;
+
+}
+
+.edit-btn:hover {
+
+    background: #3b82f6;
+
+    color: white;
+
+}
+
+.delete-btn {
+
+    background: rgba(239,68,68,.15);
+
+    color: #ef4444;
+
+}
+
+.delete-btn:hover {
+
+    background: #ef4444;
+
+    color: white;
+
+}
+
+.loading {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 400px;
+
+}
+
+.empty-state {
+
+    grid-column: 1/-1;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 20px;
+
+    padding: 80px 30px;
+
+    text-align: center;
+
+}
+
+.empty-state i {
+
+    color: #475569;
+
+    font-size: 4rem;
+
+    margin-bottom: 20px;
+
+}
+
+.empty-state h3 {
+
+    color: white;
+
+    margin-bottom: 10px;
+
+}
+
+.empty-state p {
+
+    color: #94a3b8;
+
+}
+
+@media(max-width:992px){
+
+    .dashboard{
+
+        padding:20px;
+
+    }
+
+    .page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .plans-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

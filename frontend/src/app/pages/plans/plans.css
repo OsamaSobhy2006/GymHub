@@ -1,0 +1,115 @@
+.plans-page{
+
+    padding:120px 0;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title h2{
+
+    color:white;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+}
+
+.section-title p{
+
+    color:#bfbfbf;
+
+}
+
+.plan-card{
+
+    background:#181818;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.plan-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#dc3545;
+
+}
+
+.price{
+    font-size:3rem;
+    color:#dc3545;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.price span{
+    font-size:1rem;
+    color:#fff;
+}
+.choose-btn:disabled {
+    opacity: .8;
+    cursor: not-allowed;
+}
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: .15em;
+}
+.plan-card h3{
+
+    color:white;
+
+    margin:20px 0;
+
+}
+
+.plan-card p{
+
+    color:#bfbfbf;
+
+    min-height:80px;
+
+}
+
+.duration{
+
+    color:white;
+
+    margin-bottom:30px;
+
+}
+
+.choose-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+}

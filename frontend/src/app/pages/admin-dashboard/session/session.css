@@ -1,0 +1,111 @@
+@import url(../members/members.css);
+
+.edit-btn,
+.delete-btn,
+.view-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.edit-btn{
+    background:rgba(37,99,235,.15);
+    color:#2563eb;
+}
+
+.edit-btn:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.delete-btn{
+    background:rgba(239,68,68,.15);
+    color:#ef4444;
+}
+
+.delete-btn:hover{
+    background:#ef4444;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.view-btn{
+    background:rgba(148,163,184,.15);
+    color:#94a3b8;
+    cursor:not-allowed;
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+}
+
+.actions button{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.member-info img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.member-info h6{
+    margin:0;
+    color:#fff;
+    font-size:.95rem;
+    font-weight:600;
+}
+
+.member-info small{
+    color:#94a3b8;
+}
+
+.status.active{
+    background:rgba(59,130,246,.15);
+    color:#3b82f6;
+}
+
+.status.completed{
+    background:rgba(34,197,94,.15);
+    color:#22c55e;
+}
+
+.status.inactive{
+    background:rgba(239,68,68,.15);
+    color:#ef4444;
+}
+
+.empty-state{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px 0;
+}
+
+.empty-state i{
+    font-size:4rem;
+    color:#475569;
+    margin-bottom:15px;
+}
+
+.empty-state h5{
+    color:#fff;
+    margin-bottom:8px;
+}
+
+.empty-state p{
+    color:#94a3b8;
+    margin:0;
+}

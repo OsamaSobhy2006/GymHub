@@ -1,0 +1,121 @@
+.dashboard-layout{
+    display:flex;
+    min-height:100vh;
+    background:#0f172a;
+}
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:270px;
+    height:100vh;
+    background:#1e293b;
+    border-right:1px solid #334155;
+    display:flex;
+    flex-direction:column;
+    padding:30px 20px;
+    z-index:1000;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:45px;
+}
+.logo i{
+    font-size:2rem;
+    color:#ef4444;
+}
+.logo span{
+    color:#fff;
+    font-size:1.4rem;
+    font-weight:700;
+}
+.nav-links{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    flex:1;
+}
+.nav-links a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:15px 18px;
+    border-radius:14px;
+    color:#cbd5e1;
+    text-decoration:none;
+    transition:.3s;
+    font-size:1rem;
+    font-weight:500;
+}
+.nav-links a i{
+    font-size:1.2rem;
+    width:24px;
+    text-align:center;
+}
+.nav-links a:hover{
+    background:#334155;
+    color:#fff;
+}
+.nav-links a.active{
+    background:#ef4444;
+    color:#fff;
+}
+.logout-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    border:none;
+    background:#dc2626;
+    color:#fff;
+    padding:15px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:1rem;
+    font-weight:600;
+}
+.logout-btn:hover{
+    background:#b91c1c;
+}
+.content{
+    flex:1;
+    margin-left:270px;
+    min-height:100vh;
+    background:#0f172a;
+}
+@media(max-width:992px){
+    .sidebar{
+        width:230px;
+    }
+    .content{
+        margin-left:230px;
+    }
+}
+@media(max-width:768px){
+    .sidebar{
+        width:85px;
+        padding:25px 12px;
+    }
+    .logo span,
+    .nav-links a span,
+    .logout-btn span{
+        display:none;
+    }
+    .logo{
+        justify-content:center;
+    }
+    .nav-links a{
+        justify-content:center;
+        padding:15px;
+    }
+    .logout-btn{
+        padding:15px;
+    }
+    .content{
+        margin-left:85px;
+    }
+}

@@ -1,0 +1,89 @@
+<section class="my-sessions-page">
+    <div class="container">
+        <div class="section-title">
+            <h2>My Sessions</h2>
+            <p>
+                Track all your scheduled training sessions.
+            </p>
+        </div>
+        @if(isLoading()){
+
+            <div class="text-center py-5">
+                <div class="spinner-border text-danger"></div>
+            </div>
+        }
+        @else if(sessions().length === 0){
+            <div class="empty-state">
+                <i class="bi bi-calendar2-x"></i>
+                <h3>No Sessions Yet</h3>
+                <p>
+                    You don't have any scheduled sessions.
+                </p>
+            </div>
+        }
+
+        @else {
+            <div class="row g-4">
+                @for(session of sessions(); track session.id){
+                    <div class="col-lg-6">
+                        <div class="session-card">
+                            <div class="session-header">
+                                <div>
+                                    <h4>{{session.title}}</h4>
+                                    <span
+                                        class="status"
+                                        [class.scheduled]="session.status === 'SCHEDULED'"
+                                        [class.completed]="session.status === 'COMPLETED'"
+                                        [class.cancelled]="session.status === 'CANCELLED'">
+
+                                        {{session.status}}
+                                    </span>
+                                </div>
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                            <p class="description">
+                                {{session.description}}
+                            </p>
+                            <div class="divider"></div>
+                            <div class="info-row">
+                                <i class="bi bi-person-workspace"></i>
+                                <span>
+                                    {{session.trainer.fullname}}
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-calendar3"></i>
+                                <span>
+                                    {{session.date | date:'fullDate'}}
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-clock"></i>
+                                <span>
+                                    {{session.startTime}} - {{session.endTime}}
+                                </span>
+                            </div>
+                            @if(session.status === 'SCHEDULED'){
+                                <button
+                                    class="cancel-btn"
+                                    (click)="cancelSession(session.id)"
+                                    [disabled]="cancellingSession() === session.id">
+                                    @if(cancellingSession() === session.id){
+                                        <span
+                                            class="spinner-border spinner-border-sm me-2">
+                                        </span>
+                                        Cancelling...
+                                    }
+                                    @else{
+                                        <i class="bi bi-x-circle me-2"></i>
+                                        Cancel Session
+                                    }
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>

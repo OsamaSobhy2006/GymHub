@@ -1,0 +1,378 @@
+<section class="trainer-profile-page">
+    <div class="container">
+
+        @if(isLoading()){
+
+            <div class="text-center py-5">
+                <h3 class="text-white">
+                    Loading Trainer...
+                </h3>
+            </div>
+
+        }
+
+        @else if(trainer()){
+
+        <div class="trainer-header">
+
+            <img
+                class="trainer-image"
+                [src]="environment.apiUrl + trainer()!.profileImage"
+                alt="Trainer"
+            >
+
+            <h2>
+                {{ trainer()!.fullname }}
+            </h2>
+
+            <p>
+                Professional Trainer
+            </p>
+
+            <app-rating
+                [rating]="averageRating()"
+                [totalReviews]="totalReviews()">
+            </app-rating>
+
+        </div>
+
+        <div class="trainer-info">
+
+            <div class="info-card">
+
+                <h4>
+                    Trainer Information
+                </h4>
+
+                <div class="info-item">
+
+                    <span>Email</span>
+
+                    <strong>
+                        {{ trainer()!.email }}
+                    </strong>
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Role</span>
+
+                    <strong>
+                        {{ trainer()!.role }}
+                    </strong>
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Status</span>
+
+                    <strong>
+                        {{ trainer()!.status }}
+                    </strong>
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Joined</span>
+
+                    <strong>
+                        {{ trainer()!.createdAt | date:'dd MMM yyyy' }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reviews-card">
+
+            <h3>
+                Reviews
+            </h3>
+
+            @if(reviews().length === 0){
+
+                <div class="empty-reviews">
+
+                    <i class="bi bi-chat-left-text"></i>
+
+                    <h5>
+                        No Reviews Yet
+                    </h5>
+
+                    <p>
+                        Be the first member to review this trainer.
+                    </p>
+
+                </div>
+
+            }
+
+            @else{
+
+                @for(review of reviews(); track review.id){
+
+                    <div class="review-item">
+
+                        <div class="review-header">
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <img
+                                    class="review-avatar"
+                                    [src]="environment.apiUrl + review.member.profileImage"
+                                    alt="Member"
+                                >
+
+                                <div>
+
+                                    <h5>
+                                        {{ review.member.fullname }}
+                                    </h5>
+
+                                    <small>
+                                        {{ review.createdAt | date:'dd MMM yyyy' }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            @if(authService.currentUser()?.id === review.member.id){
+
+                                <div class="review-actions">
+
+                                    <button
+                                        type="button"
+                                        class="menu-btn"
+                                        (click)="toggleMenu(review.id)"
+                                    >
+
+                                        <i class="bi bi-three-dots-vertical"></i>
+
+                                    </button>
+
+                                    @if(openMenu() === review.id){
+
+                                        <div class="review-menu">
+
+                                            <button
+                                                type="button"
+                                                (click)="editReview(review)"
+                                            >
+
+                                                <i class="bi bi-pencil"></i>
+
+                                                Edit Review
+
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                (click)="deleteReview(review.id)"
+                                            >
+
+                                                <i class="bi bi-trash"></i>
+
+                                                Delete Review
+
+                                            </button>
+
+                                        </div>
+
+                                    }
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                        <app-rating
+                            [rating]="review.rating">
+                        </app-rating>
+
+                        <p class="review-comment">
+                            {{ review.comment }}
+                        </p>
+
+                    </div>
+
+                }
+
+            }
+
+        </div>
+
+        @if(!authService.currentUser()){
+
+        <div class="review-form">
+
+            <h3>
+                Want To Share Your Experience?
+            </h3>
+
+            <p class="text-center text-secondary mb-4">
+
+                Login to write a review and rate this trainer.
+
+            </p>
+
+            <a
+                routerLink="/login"
+                class="submit-review-btn text-decoration-none text-center d-block"
+            >
+
+                Login
+
+            </a>
+
+        </div>
+
+        }
+
+        @else if(!hasUserReviewed() || editingReviewId()){
+
+        <div class="review-form">
+
+            <h3>
+
+                @if(editingReviewId()){
+
+                    Update Your Review
+
+                }
+
+                @else{
+
+                    Write a Review
+
+                }
+
+            </h3>
+
+            <div class="select-stars">
+
+                @for(star of [1,2,3,4,5]; track star){
+
+                    <i
+                        class="bi"
+                        [class.bi-star-fill]="star <= selectedRating()"
+                        [class.bi-star]="star > selectedRating()"
+                        (click)="selectRating(star)"
+                    ></i>
+
+                }
+
+            </div>
+
+            <form
+                [formGroup]="reviewForm"
+                (ngSubmit)="submitReview()"
+            >
+
+                <div class="mb-3">
+
+                    <textarea
+                        rows="5"
+                        class="form-control"
+                        placeholder="Write your review..."
+                        formControlName="comment"
+                    ></textarea>
+
+                    @if(
+                        reviewForm.controls.comment.touched &&
+                        reviewForm.controls.comment.errors?.['required']
+                    ){
+
+                        <small class="text-danger">
+
+                            Comment is required.
+
+                        </small>
+
+                    }
+
+                    @if(
+                        reviewForm.controls.comment.touched &&
+                        reviewForm.controls.comment.errors?.['minlength']
+                    ){
+
+                        <small class="text-danger">
+
+                            Comment must be at least 10 characters.
+
+                        </small>
+
+                    }
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-review-btn"
+                    [disabled]="isSubmitting()"
+                >
+
+                    @if(isSubmitting()){
+
+                        Processing...
+
+                    }
+
+                    @else if(editingReviewId()){
+
+                        Update Review
+
+                    }
+
+                    @else{
+
+                        Submit Review
+
+                    }
+
+                </button>
+
+            </form>
+
+        </div>
+
+        }
+
+        @else{
+
+        <div class="review-form text-center">
+
+            <i
+                class="bi bi-check-circle-fill"
+                style="font-size:4rem;color:#28a745"
+            ></i>
+
+            <h3 class="mt-4">
+
+                Thank You!
+
+            </h3>
+
+            <p class="text-secondary">
+
+                You have already reviewed this trainer.
+
+                You can edit or delete your review using the menu above.
+
+            </p>
+
+        </div>
+
+        }
+
+        }
+
+    </div>
+
+</section>

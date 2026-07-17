@@ -1,0 +1,63 @@
+<section class="trainers-page">
+    <div class="container">
+        <div class="section-header">
+            <span>
+                OUR TRAINERS
+            </span>
+            <h2>
+                Meet Our Professional Trainers
+            </h2>
+            <p>
+                Our certified professional trainers are ready to help you achieve your fitness goals.
+            </p>
+        </div>
+        <div class="search-box">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search trainer..."
+                [ngModel]="search()"
+                (ngModelChange)="search.set($event)"
+            >
+        </div>
+        @if(isLoading()){
+            <div class="text-center py-5">
+                <h4 class="text-white">
+                    Loading Trainers...
+                </h4>
+            </div>
+        }
+        @else {
+            <div class="row g-4">
+                @for(trainer of filteredTrainers(); track trainer.id){
+                    <div class="col-lg-4 col-md-6">
+                        <div class="trainer-card">
+                            <img
+                                [src]="environment.apiUrl + trainer.profileImage"
+                                class="trainer-image"
+                                alt="Trainer"
+                            >
+                            <h4>
+                                {{ trainer.fullname }}
+                            </h4>
+                            <span class="trainer-role">
+                                Professional Trainer
+                            </span>
+                            <app-rating
+                                [rating]="trainer.averageRating"
+                                [totalReviews]="trainer.totalReviews"
+                                [showText]="false">
+                            </app-rating>
+                            <a
+                                [routerLink]="['/trainers', trainer.id]"
+                                class="view-profile-btn"
+                            >
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>

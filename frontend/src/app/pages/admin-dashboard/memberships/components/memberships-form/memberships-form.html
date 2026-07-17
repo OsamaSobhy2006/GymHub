@@ -1,0 +1,62 @@
+<div class="modal-backdrop">
+    <div class="member-modal">
+        <div class="modal-header">
+            <h3>Add Membership</h3>
+            <button type="button" class="close-btn" (click)="cancel()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="form-group">
+                <label>Member</label>
+                <select formControlName="memberId">
+                    <option value="">Select Member</option>
+                    @for(member of members(); track member.id){
+                        <option [value]="member.id">
+                            {{member.fullname}} - {{member.email}}
+                        </option>
+                    }
+                </select>
+                @if(form.controls.memberId.touched && form.controls.memberId.invalid){
+                    <small class="error">
+                        Please select a member.
+                    </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Membership Plan</label>
+                <select formControlName="membershipPlanId">
+                    <option value="">Select Plan</option>
+                    @for(plan of plans(); track plan.id){
+                        <option [value]="plan.id">
+                            {{plan.name}} - {{plan.price}} EGP / {{plan.durationInDays}} Days
+                        </option>
+                    }
+                </select>
+                @if(form.controls.membershipPlanId.touched && form.controls.membershipPlanId.invalid){
+                    <small class="error">
+                        Please select a membership plan.
+                    </small>
+                }
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="cancel-btn" (click)="cancel()">
+                    Cancel
+                </button>
+
+                <button type="submit" class="save-btn" [disabled]="isLoading()">
+                    @if(isLoading()){
+                        <span class="spinner-border spinner-border-sm"></span>
+                    }@else{
+                        Create Membership
+                    }
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

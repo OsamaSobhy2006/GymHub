@@ -1,0 +1,167 @@
+<section class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h2>Trainer Dashboard</h2>
+            <p>Welcome back! Here's an overview of your activity.</p>
+        </div>
+    </div>
+
+    @if(isLoading()){
+
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading dashboard...</p>
+        </div>
+
+    }@else{
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="icon members">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{totalMembers()}}</h3>
+                    <span>Total Members</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon sessions">
+                    <i class="bi bi-calendar-event-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{upcomingSessions()}}</h3>
+                    <span>Upcoming Sessions</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon rating">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{averageRating()}}</h3>
+                    <span>Average Rating</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon reviews">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{totalReviews()}}</h3>
+                    <span>Total Reviews</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content-grid">
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h4>Upcoming Sessions</h4>
+                </div>
+
+                @if(upcomingSessionsList().length){
+
+                    <div class="list">
+
+                        @for(session of upcomingSessionsList();track session.id){
+
+                            <div class="list-item">
+                                <div>
+                                    <strong>{{session.member.fullname}}</strong>
+                                    <p class="text-secondary">{{session.member.email}}</p>
+                                    <small>{{session.date | date:'dd MMM yyyy'}} • {{session.startTime}} - {{session.endTime}}</small>
+                                </div>
+                                
+
+                                <span
+                                    class="badge"
+                                    [ngClass]="{
+                                        'scheduled':session.status==='SCHEDULED',
+                                        'completed':session.status==='COMPLETED',
+                                        'cancelled':session.status==='CANCELLED'
+                                    }">
+                                    {{session.status}}
+                                </span>
+                            </div>
+
+                        }
+
+                    </div>
+
+                }@else{
+
+                    <div class="empty-state">
+                        <i class="bi bi-calendar-x"></i>
+                        <p>No upcoming sessions.</p>
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h4>Latest Reviews</h4>
+                </div>
+
+                @if(latestReviews().length){
+
+                    <div class="list">
+
+                        @for(review of latestReviews();track review.id){
+
+                            <div class="list-item">
+
+                                <div>
+
+                                    <strong>{{review.member.fullname}}</strong>
+                                    <p class="text-secondary">{{review.member.email}}</p>
+
+                                    <div class="stars">
+                                        @for(star of [1,2,3,4,5];track star){
+
+                                            <i
+                                                class="bi"
+                                                [class.bi-star-fill]="star<=review.rating"
+                                                [class.bi-star]="star>review.rating">
+                                            </i>
+
+                                        }
+                                    </div>
+
+                                    <small>{{review.createdAt | date:'dd MMM yyyy'}}</small>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                }@else{
+
+                    <div class="empty-state">
+                        <i class="bi bi-chat-square-text"></i>
+                        <p>No reviews yet.</p>
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    }
+
+</section>

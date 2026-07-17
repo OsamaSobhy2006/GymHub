@@ -1,0 +1,120 @@
+<section class="plans-page">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Membership Plans
+            </h2>
+
+            <p>
+                Choose the membership that fits your fitness journey.
+            </p>
+
+        </div>
+
+        @if(isLoading()){
+
+            <h4 class="text-center text-white">
+
+                Loading Plans...
+
+            </h4>
+
+        }@else{
+
+            <div class="row g-4">
+
+                @for(plan of plans(); track plan.id){
+
+                    <div class="col-lg-4 col-md-6">
+
+                        <div
+                            class="plan-card"
+                            [class.inactive]="!plan.isActive">
+
+                            @if(!plan.isActive){
+
+                                <span class="inactive-badge">
+
+                                    Inactive
+
+                                </span>
+
+                            }
+
+                            <div class="price">
+
+                                {{plan.price}}
+
+                                <span class="currency">
+
+                                    EGP
+
+                                </span>
+
+                            </div>
+
+                            <h3>
+
+                                {{plan.name}}
+
+                            </h3>
+
+                            <p>
+
+                                {{plan.description}}
+
+                            </p>
+
+                            <div class="duration">
+
+                                {{plan.durationInDays}} Days
+
+                            </div>
+
+                            <button
+                                class="choose-btn"
+                                (click)="subscribeToPlan(plan.id)"
+                                [disabled]="!plan.isActive || checkoutLoading() === plan.id">
+
+                                @if(checkoutLoading() === plan.id){
+
+                                    <span
+                                        class="spinner-border spinner-border-sm me-2"
+                                        role="status"
+                                        aria-hidden="true">
+                                    </span>
+
+                                    Redirecting...
+
+                                }@else if(plan.isActive){
+
+                                    <i class="bi bi-credit-card me-2"></i>
+
+                                    Subscribe Now
+
+                                }@else{
+
+                                    <i class="bi bi-lock-fill me-2"></i>
+
+                                    Unavailable
+
+                                }
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        }
+
+    </div>
+
+</section>

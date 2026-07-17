@@ -1,0 +1,73 @@
+<div class="modal-backdrop">
+    <div class="review-modal">
+        <div class="modal-header">
+            <h3>Review Details</h3>
+            <button class="close-btn" (click)="closeModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="details">
+
+            <div class="detail-item">
+                <span>Member</span>
+                <div class="user-info">
+                    <img [src]="getMemberImage()" alt="Member">
+                    <div>
+                        <strong>{{review.member.fullname}}</strong>
+                        <small>{{review.member.email}}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <span>Trainer</span>
+                <div class="user-info">
+                    <img [src]="getTrainerImage()" alt="Trainer">
+                    <div>
+                        <strong>{{review.trainer.fullname}}</strong>
+                        <small>{{review.trainer.email}}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <span>Rating</span>
+                <div class="rating">
+                    @for(star of [1,2,3,4,5];track star){
+                        <i
+                            class="bi"
+                            [class.bi-star-fill]="star<=review.rating"
+                            [class.bi-star]="star>review.rating">
+                        </i>
+                    }
+                    <strong>{{review.rating}} / 5</strong>
+                </div>
+            </div>
+
+            <div class="detail-item full-width">
+                <span>Comment</span>
+                <p class="comment">
+                    {{review.comment}}
+                </p>
+            </div>
+
+            <div class="detail-item">
+                <span>Created At</span>
+                <strong>{{review.createdAt | date:'dd MMM yyyy, HH:mm'}}</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Updated At</span>
+                <strong>{{review.updatedAt | date:'dd MMM yyyy, HH:mm'}}</strong>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button class="close-action-btn" (click)="closeModal()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>

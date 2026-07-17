@@ -1,0 +1,126 @@
+<app-auth-banner>
+    <div class="register-card">
+        <span class="welcome">
+            WELCOME TO GYMHUB
+        </span>
+        <h2>
+            Create Account
+        </h2>
+        <p>
+            Create your account and start your fitness journey today.
+        </p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>
+                    Full Name
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter your full name"
+                    formControlName="fullname"
+                >
+                @if(fullname?.touched && fullname?.errors?.['required']){
+                    <small class="text-danger">
+                        Full name is required.
+                    </small>
+                }
+                @if(fullname?.touched && fullname?.errors?.['minlength']){
+                    <small class="text-danger">
+                        Full name must be at least 3 characters.
+                    </small>
+                }
+            </div>
+            <div class="form-group">
+                <label>
+                    Email Address
+                </label>
+                <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                    formControlName="email"
+                >
+            </div>
+            @if(email?.touched && email?.errors?.['required']){
+                <small class="text-danger">
+                    Email is required.
+                </small>
+            }
+            @if(email?.touched && email?.errors?.['email']){
+                <small class="text-danger">
+                    Please enter a valid email address.
+                </small>
+            }
+            <div class="form-group">
+                <label>
+                    Password
+                </label>
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter your password"
+                    formControlName="password"
+                >
+                @if(password?.touched && password?.errors?.['required']){
+                    <small class="text-danger">
+                        Password is required.
+                    </small>
+                }
+
+                @if(password?.touched && password?.errors?.['minlength']){
+                    <small class="text-danger">
+                        Password must be at least 8 characters.
+                    </small>
+                }
+            </div>
+            <div class="form-group">
+                <label>
+                    Confirm Password
+                </label>
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm your password"
+                    formControlName="confirmPassword"
+                >
+                @if(confirmPassword?.touched && confirmPassword?.errors?.['required']){
+                    <small class="text-danger">
+                        Confirm password is required.
+                    </small>
+                }
+                @if(
+                    confirmPassword?.touched &&
+                    !confirmPassword?.errors?.['required'] &&
+                    registerForm.hasError('passwordMismatch')
+                ){
+                    <small class="text-danger">
+                        Passwords do not match.
+                    </small>
+                }
+            </div>
+            <button
+                type="submit"
+                class="register-btn"
+                [disabled]="isLoading()"
+            >
+                @if(isLoading()){
+                    Creating Account...
+                } @else {
+                    Create Account
+                }
+            </button>
+        </form>
+        <div class="divider">
+            <span>
+                OR
+            </span>
+        </div>
+        <p class="login-text">
+            Already have an account?
+            <a routerLink="/login">
+                Login
+            </a>
+        </p>
+    </div>
+</app-auth-banner>

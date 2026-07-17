@@ -1,0 +1,141 @@
+.register-card{
+    width:100%;
+    max-width:520px;
+    background:#181818;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    padding:45px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.welcome{
+    color:#dc3545;
+    font-size:.9rem;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.register-card h2{
+    color:#fff;
+    font-size:2.2rem;
+    font-weight:800;
+    margin:15px 0;
+}
+
+.register-card>p{
+    color:#a5a5a5;
+    margin-bottom:35px;
+    line-height:1.8;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    color:#fff;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.form-control{
+    background:#222;
+    border:1px solid #333;
+    color:#fff;
+    padding:15px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.form-control:focus{
+    background:#222;
+    color:#fff;
+    border-color:#dc3545;
+    box-shadow:none;
+}
+
+.form-control::placeholder{
+    color:#888;
+}
+
+.form-check{
+    margin:25px 0;
+}
+
+.form-check-input{
+    background:#222;
+    border-color:#555;
+}
+
+.form-check-input:checked{
+    background:#dc3545;
+    border-color:#dc3545;
+}
+
+.form-check-label{
+    color:#cfcfcf;
+    margin-left:8px;
+}
+
+.register-btn{
+    width:100%;
+    border:none;
+    background:#dc3545;
+    color:#fff;
+    padding:15px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:700;
+    transition:.3s;
+}
+
+.register-btn:hover{
+    background:#bb2d3b;
+}
+
+.divider{
+    display:flex;
+    align-items:center;
+    margin:30px 0;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#333;
+}
+
+.divider span{
+    color:#888;
+    padding:0 15px;
+}
+
+.login-text{
+    color:#b5b5b5;
+    text-align:center;
+    margin:0;
+}
+
+.login-text a{
+    color:#dc3545;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.login-text a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:576px){
+
+    .register-card,
+    .login-card{
+        background:rgba(24,24,24,.92);
+        backdrop-filter:blur(12px);
+        border:1px solid rgba(255,255,255,.08);
+    }
+
+}

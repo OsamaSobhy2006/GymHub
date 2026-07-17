@@ -1,0 +1,206 @@
+<section class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h2>My Sessions</h2>
+            <p>Manage all your training sessions.</p>
+        </div>
+
+        <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+                type="text"
+                placeholder="Search by member or session..."
+                [ngModel]="search()"
+                (ngModelChange)="search.set($event)">
+        </div>
+
+    </div>
+
+    @if(isLoading()){
+
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading sessions...</p>
+        </div>
+
+    }@else{
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="icon total">
+                    <i class="bi bi-calendar2-week-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{totalSessions()}}</h3>
+                    <span>Total Sessions</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon scheduled">
+                    <i class="bi bi-clock-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{scheduledSessions()}}</h3>
+                    <span>Scheduled</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon completed">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{completedSessions()}}</h3>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon cancelled">
+                    <i class="bi bi-x-circle-fill"></i>
+                </div>
+                <div class="info">
+                    <h3>{{cancelledSessions()}}</h3>
+                    <span>Cancelled</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Member</th>
+                        <th>Session</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if(filteredSessions().length){
+
+                        @for(session of filteredSessions();track session.id){
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <img
+                                            [src]="getMemberImage(session)"
+                                            [alt]="session.member.fullname">
+
+                                        <div>
+                                            <h5>{{session.member.fullname}}</h5>
+                                            <span>{{session.member.email}}</span>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="session-info">
+                                        <h5>{{session.title}}</h5>
+                                        <span>{{session.description}}</span>
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    {{session.date | date:'dd MMM yyyy'}}
+
+                                </td>
+
+                                <td>
+
+                                    {{session.startTime}} - {{session.endTime}}
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="badge"
+                                        [ngClass]="{
+                                            'scheduled-badge':session.status==='SCHEDULED',
+                                            'completed-badge':session.status==='COMPLETED',
+                                            'cancelled-badge':session.status==='CANCELLED'
+                                        }">
+                                        {{session.status}}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="view-btn"
+                                        (click)="openDetails(session)">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    }@else{
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="empty">
+
+                                <div class="empty-state">
+
+                                    <i class="bi bi-calendar-x-fill"></i>
+
+                                    <h5>No Sessions Found</h5>
+
+                                    <p>There are no sessions matching your search.</p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    }
+
+    @if(isDetailsOpen()){
+
+        <app-session-details
+            [session]="selectedSession()!"
+            (close)="closeDetails()">
+        </app-session-details>
+
+    }
+
+</section>

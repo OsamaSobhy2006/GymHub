@@ -1,0 +1,35 @@
+<div class="rating-container">
+
+    <div class="stars">
+
+        @for(filled of stars(); track $index){
+
+            @if(filled){
+
+                <i class="bi bi-star-fill"></i>
+
+            }
+
+            @else{
+
+                <i class="bi bi-star"></i>
+
+            }
+
+        }
+
+    </div>
+
+    @if(showText() && totalReviews() > 0){
+
+        <span>
+
+            {{ rating() }}/5
+
+            ({{ totalReviews() }} Reviews)
+
+        </span>
+
+    }
+
+</div>

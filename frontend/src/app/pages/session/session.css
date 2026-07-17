@@ -1,0 +1,243 @@
+.my-sessions-page{
+    min-height:100vh;
+    background:#121212;
+    padding:90px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h2{
+    color:#fff;
+    font-size:2.6rem;
+    font-weight:700;
+}
+
+.section-title p{
+    color:#adb5bd;
+    margin-top:10px;
+}
+
+.session-card{
+
+    background:#1b1b1b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:28px;
+
+    transition:.35s;
+
+    height:100%;
+}
+
+.session-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#dc3545;
+
+    box-shadow:0 20px 40px rgba(220,53,69,.15);
+
+}
+
+.session-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:18px;
+
+}
+
+.session-header h4{
+
+    color:#fff;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+}
+
+.session-header i{
+
+    color:#dc3545;
+
+    font-size:2rem;
+
+}
+
+.status{
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:.75rem;
+
+    font-weight:600;
+
+}
+
+.scheduled{
+
+    background:rgba(25,135,84,.15);
+
+    color:#20c997;
+
+}
+
+.completed{
+
+    background:rgba(13,110,253,.15);
+
+    color:#6ea8fe;
+
+}
+
+.cancelled{
+
+    background:rgba(220,53,69,.15);
+
+    color:#ff6b6b;
+
+}
+
+.description{
+
+    color:#adb5bd;
+
+    line-height:1.8;
+
+    margin-bottom:18px;
+
+}
+
+.divider{
+
+    height:1px;
+
+    background:rgba(255,255,255,.08);
+
+    margin:20px 0;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#fff;
+
+    margin-bottom:14px;
+
+}
+
+.info-row i{
+
+    color:#dc3545;
+
+    width:20px;
+
+}
+
+.cancel-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    background:#dc3545;
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.cancel-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+.cancel-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+.empty-state{
+
+    background:#1b1b1b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:70px 20px;
+
+    text-align:center;
+
+}
+
+.empty-state i{
+
+    color:#dc3545;
+
+    font-size:5rem;
+
+}
+
+.empty-state h3{
+
+    color:#fff;
+
+    margin-top:20px;
+
+}
+
+.empty-state p{
+
+    color:#adb5bd;
+
+    margin-top:10px;
+
+}
+
+@media(max-width:768px){
+
+    .section-title h2{
+
+        font-size:2rem;
+
+    }
+
+    .session-card{
+
+        padding:22px;
+
+    }
+
+}

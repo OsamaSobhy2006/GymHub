@@ -1,0 +1,21 @@
+.rating-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+}
+
+.stars{
+    display:flex;
+    gap:6px;
+}
+
+.stars i{
+    color:#ffc107;
+    font-size:1.2rem;
+}
+
+.rating-container span{
+    color:#b5b5b5;
+    font-size:.9rem;
+}

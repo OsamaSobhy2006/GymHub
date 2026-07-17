@@ -1,0 +1,172 @@
+<div class="modal-backdrop">
+
+    <div class="member-modal">
+
+        <div class="modal-header">
+
+            <h3>Member Details</h3>
+
+            <button
+                class="close-btn"
+                (click)="closeModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+        </div>
+
+        <div class="profile-section">
+
+            <img
+                [src]="getProfileImage()"
+                [alt]="member.fullname">
+
+            <div>
+
+                <h2>{{member.fullname}}</h2>
+
+                <p>{{member.email}}</p>
+
+                <span
+                    class="badge"
+                    [class.active]="member.status==='ACTIVE'"
+                    [class.inactive]="member.status!=='ACTIVE'">
+                    {{member.status}}
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <i class="bi bi-calendar2-week-fill"></i>
+
+                <div>
+
+                    <h3>{{totalSessions()}}</h3>
+
+                    <span>Total Sessions</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <div>
+
+                    <h3>{{completedSessions()}}</h3>
+
+                    <span>Completed</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-clock-fill"></i>
+
+                <div>
+
+                    <h3>{{scheduledSessions()}}</h3>
+
+                    <span>Scheduled</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                <div>
+
+                    <h3>{{cancelledSessions()}}</h3>
+
+                    <span>Cancelled</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="sessions-card">
+
+            <h4>Sessions History</h4>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Title</th>
+
+                        <th>Date</th>
+
+                        <th>Time</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @for(session of sessions;track session.id){
+
+                        <tr>
+
+                            <td>{{session.title}}</td>
+
+                            <td>{{session.date | date:'dd MMM yyyy'}}</td>
+
+                            <td>{{session.startTime}} - {{session.endTime}}</td>
+
+                            <td>
+
+                                <span
+                                    class="status-badge"
+                                    [class.scheduled]="session.status==='SCHEDULED'"
+                                    [class.completed]="session.status==='COMPLETED'"
+                                    [class.cancelled]="session.status==='CANCELLED'">
+
+                                    {{session.status}}
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="close-action-btn"
+                (click)="closeModal()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

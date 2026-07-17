@@ -1,0 +1,85 @@
+.page-title{
+    color:#fff;
+    text-align:center;
+    font-weight:800;
+    margin-bottom:40px;
+}
+
+.profile-card,
+.info-card{
+    background:#181818;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    padding:35px;
+}
+
+.profile-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.profile-image{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:25px;
+}
+
+.change-photo-btn{
+    width:100%;
+    border:none;
+    background:#dc3545;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.change-photo-btn:hover{
+    background:#bb2d3b;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    color:#fff;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.form-control{
+    background:#222;
+    border:1px solid #333;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+}
+
+.form-control:focus{
+    background:#222;
+    color:#fff;
+    border-color:#dc3545;
+    box-shadow:none;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:15px;
+    border:none;
+    background:#dc3545;
+    color:#fff;
+    padding:15px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.save-btn:hover{
+    background:#bb2d3b;
+}

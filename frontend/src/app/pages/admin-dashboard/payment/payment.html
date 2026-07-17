@@ -1,0 +1,99 @@
+<section class="dashboard">
+    <div class="page-header">
+        <div>
+            <h1>Payments</h1>
+            <p>View all membership payments.</p>
+        </div>
+    </div>
+    <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input
+            type="text"
+            placeholder="Search payments..."
+            (input)="onSearch($event)">
+    </div>
+    @if(isLoading()){
+        <div class="loading">
+            <div class="spinner-border text-danger"></div>
+        </div>
+    }@else{
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Paid At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(payment of filteredPayments();track payment.id){
+                        <tr>
+                            <td>
+                                <div class="member-info">
+                                    <div>
+                                        <h6>{{payment.member.fullname}}</h6>
+                                        <small>{{payment.member.email}}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                {{payment.membership?.membershipPlan?.name || '-'}}
+                            </td>
+                            <td>
+                                {{payment.amount}} EGP
+                            </td>
+                            <td>
+                                <span class="type">
+                                    {{payment.type}}
+                                </span>
+                            </td>
+                            <td>
+                                <span
+                                    class="status"
+                                    [class.active]="payment.status==='PAID'"
+                                    [class.pending]="payment.status==='PENDING'"
+                                    [class.inactive]="payment.status==='FAILED'">
+                                    {{payment.status}}
+                                </span>
+                            </td>
+                            <td>
+                                {{payment.paidAt ? (payment.paidAt | date:'dd MMM yyyy') : '-'}}
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button
+                                        class="view-btn"
+                                        (click)="openDetails(payment)"
+                                        title="View Details">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }@empty{
+                        <tr>
+                            <td colspan="7" class="empty">
+                                <div class="empty-state">
+                                    <i class="bi bi-credit-card-2-front-fill"></i>
+                                    <h5>No Payments Found</h5>
+                                    <p>There are no payments available.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    @if(isDetailsOpen()){
+        <app-payment-form
+            [payment]="selectedPayment()!"
+            (close)="closeDetails()">
+        </app-payment-form>
+    }
+</section>

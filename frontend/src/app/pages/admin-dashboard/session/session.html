@@ -1,0 +1,117 @@
+<section class="dashboard">
+    <div class="page-header">
+        <div>
+            <h1>Sessions</h1>
+            <p>Manage all training sessions.</p>
+        </div>
+        <button class="add-user-btn" (click)="openCreateForm()">
+            <i class="bi bi-plus-circle-fill"></i>
+            Schedule Session
+        </button>
+    </div>
+    <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input
+            type="text"
+            placeholder="Search sessions..."
+            (input)="onSearch($event)">
+    </div>
+    @if(isLoading()){
+        <div class="loading">
+            <div class="spinner-border text-danger"></div>
+        </div>
+    }@else{
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Trainer</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(session of filteredSessions();track session.id){
+                        <tr>
+                            <td>
+                                <div class="member-info">
+                                    <div>
+                                        <h6>{{session.member.fullname}}</h6>
+                                        <small>{{session.member.email}}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="member-info">
+                                    <div>
+                                        <h6>{{session.trainer.fullname}}</h6>
+                                        <small>{{session.trainer.email}}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{session.title}}</td>
+                            <td>{{session.date | date:'dd MMM yyyy'}}</td>
+                            <td>{{session.startTime}} - {{session.endTime}}</td>
+                            <td>
+                                <span
+                                    class="status"
+                                    [class.active]="session.status==='SCHEDULED'"
+                                    [class.completed]="session.status==='COMPLETED'"
+                                    [class.inactive]="session.status==='CANCELLED'">
+                                    {{session.status}}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    @if(session.status==='SCHEDULED'){
+                                        <button
+                                            class="edit-btn"
+                                            (click)="openEditForm(session)"
+                                            title="Edit Session">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button
+                                            class="delete-btn"
+                                            (click)="cancelSession(session.id)"
+                                            title="Cancel Session">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                        </button>
+                                    }@else{
+                                        <button
+                                            class="view-btn"
+                                            disabled
+                                            title="Session Closed">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }@empty{
+                        <tr>
+                            <td colspan="7" class="empty">
+                                <div class="empty-state">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <h5>No Sessions Found</h5>
+                                    <p>No sessions match your search.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    @if(isFormOpen()){
+        <app-session-form
+            [mode]="mode()"
+            [session]="selectedSession()!"
+            (close)="closeForm()"
+            (saved)="closeForm()">
+        </app-session-form>
+    }
+</section>

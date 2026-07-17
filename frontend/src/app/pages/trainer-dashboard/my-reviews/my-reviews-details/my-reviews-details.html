@@ -1,0 +1,103 @@
+<div class="modal-backdrop">
+
+    <div class="review-modal">
+
+        <div class="modal-header">
+
+            <h3>Review Details</h3>
+
+            <button
+                class="close-btn"
+                (click)="closeModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+        </div>
+
+        <div class="review-info">
+
+            <img
+                [src]="getMemberImage()"
+                [alt]="review.member.fullname">
+
+            <div>
+
+                <h2>{{review.member.fullname}}</h2>
+
+                <p>{{review.member.email}}</p>
+
+                <div class="stars">
+
+                    @for(star of getStars();track star){
+
+                        <i class="bi bi-star-fill"></i>
+
+                    }
+
+                    @for(star of getEmptyStars();track star){
+
+                        <i class="bi bi-star"></i>
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="details">
+
+            <div class="detail-item">
+
+                <span>Rating</span>
+
+                <strong>{{review.rating}} / 5</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Created At</span>
+
+                <strong>{{review.createdAt | date:'dd MMM yyyy, HH:mm'}}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Updated At</span>
+
+                <strong>{{review.updatedAt | date:'dd MMM yyyy, HH:mm'}}</strong>
+
+            </div>
+
+            <div class="detail-item full-width">
+
+                <span>Comment</span>
+
+                <p class="comment">
+
+                    {{review.comment}}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="close-action-btn"
+                (click)="closeModal()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+
+    <a class="navbar-brand" routerLink="/">
+      <span>GymHub</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/trainers"
+            routerLinkActive="active"
+          >
+            Trainers
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/plans"
+            routerLinkActive="active"
+          >
+            Membership Plans
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/about"
+            routerLinkActive="active"
+          >
+            About
+          </a>
+        </li>
+
+      </ul>
+
+      @if(!authService.currentUser()){
+        <div class="auth-buttons">
+        <a
+            routerLink="/login"
+            class="login-link"
+        >
+            Login
+        </a>
+        <a
+            routerLink="/register"
+            class="register-btn"
+        >
+            Register
+        </a>
+      </div>
+    }
+      @else{
+      <div class="profile-menu">
+      <img
+        class="profile-avatar"
+        [src]="environment.apiUrl + authService.currentUser()?.profileImage"
+        alt="Profile"
+        (click)="toggleDropdown()"
+      >
+      @if(isDropdownOpen){
+      <div class="profile-dropdown">
+        <div class="dropdown-header">
+            <h6>
+                {{ authService.currentUser()?.fullname }}
+            </h6>
+            <span>
+                {{ authService.currentUser()?.role }}
+            </span>
+        </div>
+        <a
+            routerLink="/profile"
+            class="dropdown-item"
+            (click)="isDropdownOpen=false"
+        >
+            <i class="bi bi-person"></i>
+            My Profile
+        </a>
+        @if(authService.currentUser()?.role === 'ADMIN'){
+        <a
+            routerLink="/admin/overview"
+            class="dropdown-item"
+            (click)="isDropdownOpen=false"
+        >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+        }
+        @if(authService.currentUser()?.role === 'TRAINER') {
+                  <a
+            routerLink="/trainer/overview"
+            class="dropdown-item"
+            (click)="isDropdownOpen=false"
+        >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+        }
+        @if(authService.currentUser()?.role === 'MEMBER'){
+          <a
+            routerLink="/my-membership"
+            class="dropdown-item"
+            (click)="isDropdownOpen=false"
+        >
+        <i class="bi bi-credit-card-2-front"></i>
+            My Memberships
+        </a>
+
+          <a
+            routerLink="/my-sessions"
+            class="dropdown-item"
+            (click)="isDropdownOpen=false"
+        >
+        <i class="bi bi-calendar-event"></i>
+            My Sessions
+        </a>
+        }
+        <button
+            class="dropdown-item logout-btn"
+            (click)="logout()"
+        >
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+        </button>
+    </div>
+    }
+
+  </div>
+
+  }
+
+    </div>
+
+  </div>
+</nav>

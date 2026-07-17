@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Angular
+.angular/
+dist/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+coverage/
+.cache/
+
+# Temporary files
+tmp/
+temp/
+
+
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional
+.vercel/
+.render/
